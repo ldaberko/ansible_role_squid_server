@@ -1,0 +1,8 @@
+---
+- include: ubuntu.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- include: freebsd.yml
+  when: ansible_facts['os_family'] == "FreeBSD"
+
+

@@ -1,0 +1,6 @@
+---
+# handlers file for squid_server#
+- name: Restart FreeBSD Squid
+  ansible.builtin.service:
+    name: squid
+    state: restarted

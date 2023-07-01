@@ -1,0 +1,31 @@
+---
+- name: FreeBSD | Install Squid
+  community.general.pkgng:
+    name: squid
+    state: latest
+  notify: Restart FreeBSD Squid
+
+- name: FreeBSD | Configure Squid
+  ansible.builtin.lineinfile:
+    path: /usr/local/etc/squid/squid.conf
+    regexp: '^#?\s*{{ item.key }}\s'
+    line: "{{ item.key }} {{ item.string }}"
+  with_items:
+    - key: http_access
+      string: "allow localnet"
+    - key: cache_dir
+      string: "ufs /var/squid/cache {{ cache_dir_size }} 16 256"
+  notify: Restart FreeBSD Squid
+
+- name: FreeBSD | Initialize Squid cache dir
+  ansible.builtin.command: 
+    cmd: /usr/local/sbin/squid -z
+    creates: /var/squid/cache
+
+- name: FreeBSD | Enable Squid
+  ansible.builtin.service:
+    name: squid
+    enabled: true
+    state: started
+  notify: Restart FreeBSD Squid
+

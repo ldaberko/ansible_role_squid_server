@@ -1,0 +1,5 @@
+---
+# defaults file for squid_server
+
+# Cache directory size in MB
+cache_dir_size: 100

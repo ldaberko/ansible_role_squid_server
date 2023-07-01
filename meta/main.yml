@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Larry Daberko
+  description: Set up a squid server
+  company: Daberkotech
+
+  license: license GPLv3
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: FreeBSD
+    versions:
+    - 13.2
+#  - name: Ubuntu
+#    versions:
+#    - all
+#    - 1.0
+
+  galaxy_tags:
+    - squid
+    - proxy
+
+dependencies: []
